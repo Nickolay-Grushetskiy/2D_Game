@@ -126,7 +126,7 @@ MonoBehaviour:
   attackDamage: 20
   distAttackInSqr: 4000
   toMove: 0
-  radiusAttack: 25
+  radiusAttack: 30
   RigidBody: {fileID: 0}
   Collider: {fileID: 0}
   Player: {fileID: 0}
