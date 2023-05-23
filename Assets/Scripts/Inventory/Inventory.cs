@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public bool active = false;
+    public bool active = true;
     private Slot _slotAmmo;
 
     void Start()

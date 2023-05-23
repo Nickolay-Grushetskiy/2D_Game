@@ -7,7 +7,7 @@ public class Slot : MonoBehaviour
 {
     [SerializeField] private bool _active;
     [SerializeField] public int count = 0;
-    private Transform _button;
+    [SerializeField] private Transform _button;
     public string text;
     public string itemName;
 
@@ -41,11 +41,16 @@ public class Slot : MonoBehaviour
         SetText();
     }
 
-    void Start()
+    private void Awake()
     {
         _button = transform.GetChild(0);
         _button.gameObject.SetActive(_active);
         text = _button.GetChild(0).GetComponent<Text>().text;
+    }
+
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
