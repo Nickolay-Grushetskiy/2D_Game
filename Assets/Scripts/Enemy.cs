@@ -103,9 +103,4 @@ public abstract class Enemy : MonoBehaviour
 
 
     abstract public void AddDropItems();
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(AttackPoint.position, radiusAttack);
-    }
 }

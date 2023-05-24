@@ -18,6 +18,7 @@ public class MainCharacter : MonoBehaviour
     public CircleCollider2D CircleCollider;
     public GameObject Gun;
     public Inventory _inventory;
+    private Animator _animator;
     HealthBar _healthBar;
 
     void Start()
@@ -29,20 +30,21 @@ public class MainCharacter : MonoBehaviour
         _inventory = GameObject.Find("Bag").GetComponent<Inventory>();
         _healthBar = gameObject.GetComponentInChildren<HealthBar>();
         _healthBar.UpdateHealthBar(health, maxHealth);
+        _animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        if (joystick != null) 
-        {
-            Vector2 tmpVector =new Vector2( joystick.Horizontal, joystick.Vertical );
-            tmpVector = tmpVector.normalized * speed;
-            tmpVector = RigidBody.position + tmpVector * Time.fixedDeltaTime;
-            tmpVector.x = Mathf.Clamp(tmpVector.x, -500, 3000);
-            tmpVector.y = Mathf.Clamp(tmpVector.y, -200, 200);
-            RigidBody.MovePosition(tmpVector);
-            
-        }
+        Vector2 tmpVector = new Vector2(joystick.Horizontal, joystick.Vertical);
+        tmpVector = tmpVector.normalized * speed;
+        tmpVector = RigidBody.position + tmpVector * Time.fixedDeltaTime;
+        tmpVector.x = Mathf.Clamp(tmpVector.x, -500, 3000);
+        tmpVector.y = Mathf.Clamp(tmpVector.y, -200, 200);
+        RigidBody.MovePosition(tmpVector);
+        if (joystick.Horizontal != 0 || joystick.Vertical != 0)
+            _animator.SetBool("Move", true);
+        else
+            _animator.SetBool("Move", false);
     }
 
     private void OnTriggerEnter2D(Collider2D otherCollider)
